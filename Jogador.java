@@ -4,51 +4,42 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Jogador {
+	
 	private String nome;
     private List<Carta> cartasMao;
     
-
     public Jogador(String nome) {
         this.nome = nome;
-        cartasMao = new ArrayList<>();
-    }
-
-    public void receberCarta(Carta carta) {
-    	for (int i = 0;i<=4;i++) {
-        	this.cartasMao.add(baralho.removerCarta());
-        }
+        cartasMao = new ArrayList<>(3);
     }
     
-    public Carta jogarCarta(Carta cartaJogada) {
-        Carta cartaRemovida = null;
+    public List<Carta> getCartasMao() {
+		return cartasMao;
+	}
+
+/*	public void setCartasMao(List<Carta> cartasMao) {
+		this.cartasMao = cartasMao;
+	}
+*/
+
+	public void receberCartas (Carta carta) {
+		cartasMao.add(carta);
+    }
+    
+    public Carta jogarCartas(List<Carta> cartasmesa, String Trunfo) {
+    	return cartasMao.remove((int)(Math.random()*cartasMao.size()));
+    }
+    
+    
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+		sb.append("Jogador: ").append(nome).append("\n");
+        sb.append("Cartas na mão: \n");
         for (Carta carta : cartasMao) {
-            if (carta.equals(cartaJogada)) {
-                cartaRemovida = carta;
-                break;
-            }
+            sb.append(carta.toString()).append("\n");
         }
-        else if (cartaRemovida != null) {
-            cartasMao.remove(cartaRemovida);
-        }
-        return cartaRemovida;
+        return sb.toString();
     }
     
-    public List<Carta> getMao() {
-        return cartasMao;
-    }
-
-    public int getNumCartas() {
-        return cartasMao.size();
-    }
-
-    public String getNome() {
-    	return nome;
-    }
 }
-    
-    
-        
-
-
-
-
