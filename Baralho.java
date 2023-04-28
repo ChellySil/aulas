@@ -1,29 +1,33 @@
 public class Baralho {
-    private Carta[] cartas; 
-    private int numCartas; 
-
-    // Construtor da classe Baralho
-    public baralho() {
-        // Cria as cartas do baralho
-        cartas = new Carta[40];
-        String[] valores = {"Ás", "2", "3", "4", "5", "6", "7", "Dama", "Valete", "Rei"};
+    private ArrayList<Carta> cartas;
+    
+    public Baralho() {
+        cartas = new ArrayList<>();
+        String[] valores = {"Ás", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Valete", "Dama", "Rei"};
         String[] naipes = {"Paus", "Copas", "Espadas", "Ouros"};
-        int index = 0;
+        
         for (String valor : valores) {
             for (String naipe : naipes) {
-                cartas[index++] = new Carta(valor, naipe);
+                Carta carta = new Carta(valor, naipe);
+                cartas.add(carta);
             }
         }
-        numCartas = 40;
- 
     }
-
-   public void embaralhar() {
-        Random random = new Random();
-        for (int i = numCartas - 1; i > 0; i--) {
-            int j = random.nextInt(i + 1);
-            Carta temp = cartas[i];
-            cartas[i] = cartas[j];
-            cartas[j] = temp;
+    
+    public void embaralhar() {
+        for (int i = cartas.size() - 1; i > 0; i--) {
+            int j = (int) (Math.random() * (i + 1));
+            Carta temp = cartas.get(i);
+            cartas.set(i, cartas.get(j));
+            cartas.set(j, temp);
         }
     }
+    
+    public Carta comprarCarta() {
+        if (!cartas.isEmpty()) {
+            return cartas.remove(0);
+        } else {
+            return null;
+        }
+    }
+}
