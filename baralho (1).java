@@ -15,4 +15,15 @@ public class Baralho {
             }
         }
         numCartas = 40;
+ 
+    }
+
+   public void embaralhar() {
+        Random random = new Random();
+        for (int i = numCartas - 1; i > 0; i--) {
+            int j = random.nextInt(i + 1);
+            Carta temp = cartas[i];
+            cartas[i] = cartas[j];
+            cartas[j] = temp;
+        }
     }
