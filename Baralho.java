@@ -22,12 +22,14 @@ public class Baralho {
     
     
     public void embaralhar() {
+        Random random = new Random();
         for (int i = cartas.size() - 1; i > 0; i--) {
-            int j = (int) (Math.random() * (i + 1));
+            int j = random.nextInt(i + 1);
             Carta temp = cartas.get(i);
             cartas.set(i, cartas.get(j));
             cartas.set(j, temp);
         }
+        indice = 0;
     }
     
     public Carta comprarCarta() {
