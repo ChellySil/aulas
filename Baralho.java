@@ -1,5 +1,9 @@
+import java.util.Random;
+import java.util.ArrayList;
+
 public class Baralho {
     private ArrayList<Carta> cartas;
+    private int indice;
     
     public Baralho() {
         cartas = new ArrayList<>();
@@ -12,7 +16,10 @@ public class Baralho {
                 cartas.add(carta);
             }
         }
+        
+        indice = 0;
     }
+    
     
     public void embaralhar() {
         for (int i = cartas.size() - 1; i > 0; i--) {
